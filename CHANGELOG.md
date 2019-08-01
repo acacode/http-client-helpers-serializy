@@ -3,7 +3,7 @@
 <!-- TEMPLATE OF NEW VERSION -->
 
 <!-- 
-## [VERSION](https://github.com/acacode/http-client-helpers-serializy/releases/tag/VERSION)
+## [VERSION](https://github.com/acacode/http-helpers-serializy/releases/tag/VERSION)
 
 ### Changed
 ### Fixed
@@ -11,7 +11,7 @@
 ### Removed
  -->
 
-## [0.0.1](https://github.com/acacode/http-client-helpers-serializy/releases/tag/0.0.1)
+## [0.0.1](https://github.com/acacode/http-helpers-serializy/releases/tag/0.0.1)
 
 ### Added  
 - Created project  
