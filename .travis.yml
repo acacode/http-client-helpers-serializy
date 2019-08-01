@@ -1,0 +1,60 @@
+
+language: node_js
+node_js:
+  - "node"
+
+cache:
+  directories:
+    - "node_modules"
+
+before_install:
+  - export PACKAGE_VERSION=$(node -p "require('./package.json').version")
+  - export NPM_REMOTE_VERSION=$(npm view http-helpers-serializy version)
+  - export PACKAGE_NAME=$(node -p "require('./package.json').name")
+  - export BRANCH_IS_TAG=$(node -p "/^([0-9].[0-9].[0-9]+((-(alpha|beta))|))$/.test('${TRAVIS_BRANCH}')")
+  - export GIT_LOG="$(git log --pretty=format:"* %s (%h)")"
+  - export PROJECT_NAME="acacode/http-helpers-serializy"
+  - export RELEASE_BODY=$(node -p "'[Click here to see release changes](https://github.com/$PROJECT_NAME/blob/$TRAVIS_BRANCH/CHANGELOG.md#' + require('./bin/getLatestTag.js') + ')'")
+
+install:
+  - npm ci
+
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
+    - stage: test
+      script:
+        - npm run build
+        - npm run test
+    - stage: publish
+      if: env(BRANCH_IS_TAG) != true AND branch = master AND type = push
+      name: "Create Github Release"
+      before_deploy:
+        - git config --global user.email "builds@travis-ci.com"
+        - git config --global user.name "Travis CI"
+        - git tag $PACKAGE_VERSION -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER from $TRAVIS_BRANCH"
+        - git push -q https://$GITHUB_TOKEN@github.com/$PROJECT_NAME --tags
+        - zip -r release.zip dist lib es src index.d.ts LICENSE README.md package.json
+        - ls -l
+      deploy:
+        provider: releases
+        name: "Release ${PACKAGE_VERSION}"
+        body: "$RELEASE_BODY"
+        overwrite: true
+        skip_cleanup: true
+        api_key:
+          secure: ${GITHUB_TOKEN}
+        file:
+          - release.zip
+        on:
+          all_branches: true
+          repo: $PROJECT_NAME
+      after_deploy:
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+        - npm publish
+
+notifications:
+  slack:
+    rooms:
+      secure: T4X15kgmoN0qGh3wbTdAVFC14hwD6p7I+AMrIycoqepCe5yvymXe3GxT8vnsRPzuRKFTSV+MelTGA7x9GNucWjpF85Y87JNC1pQBlU7iLS86kHqWRQCAytHDkfMy9raQDSuH9fZTilM2+DqobSfWUFpshvPsB44kkvv/yP/7NN+umovrIkstDwSM8PCDafUPaphvi8Hgo2ZThxaDTVq05JXDjYxo1qfpGC0CHkC9zK3P1vVLEFOTEHFJ5F7kZZtU9Ipmg8otWJWwX2hNCimFdO7/baMZv/vbZrsy8YqUtz6vt7ReA2mOG+wctOgGd9CA/ERLy3BF+dYkjrUuRd9qPKOiRIEHHjODPzzxZd3VRd0FC6SFIhbA5vDLBUHyU7HNBD+YfgzzIVOxCg3aYcBMVtm92VT6qm2qFrzix6SWjhJJ1skwYnths46X+cQJ6je9bZlY2urSWuEeGGUQKmzTZhMSgP2D+41h+WeXuLScpSF2Ec09rQmm7M6BSFBu4KcPuSj/rJcmSqwvVKt/TGR2N6VWBuw6VARsgI1wsKubY6aFMBzNxchYZyf+OM7asW6gE5cDJ4hLqjbcncIxnxBTbjmoix7Q3sq2rdtEq1wT5GLi69562GSpz0mCmwYINnIOCzRTzRiUed5XM/AoItIZjf+cT1iZP32/+vw7AzVIuy8=

@@ -1,11 +1,11 @@
 {
-  "name": "http-client-helpers-serializy",
+  "name": "http-helpers-serializy",
   "version": "0.0.1",
   "license": "MIT",
   "description": "helpers for http web clients for integration with serializy",
-  "main": "lib/http-client-helpers-serializy.js",
-  "unpkg": "dist/http-client-helpers-serializy.js",
-  "module": "es/http-client-helpers-serializy.js",
+  "main": "lib/http-helpers-serializy.js",
+  "unpkg": "dist/http-helpers-serializy.js",
+  "module": "es/http-helpers-serializy.js",
   "scripts": {
     "build": "rollup -c",
     "clean": "rimraf lib dist es",
@@ -18,9 +18,9 @@
     "name": "acacode"
   },
   "bugs": {
-    "url": "https://github.com/acacode/http-client-helpers-serializy/issues"
+    "url": "https://github.com/acacode/http-helpers-serializy/issues"
   },
-  "homepage": "https://github.com/acacode/http-client-helpers-serializy#readme",
+  "homepage": "https://github.com/acacode/http-helpers-serializy#readme",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
@@ -50,6 +50,7 @@
     "kinka",
     "serializy",
     "javascript",
+    "http",
     "javascript-library"
   ],
   "typings": "./index.d.ts",
@@ -57,7 +58,7 @@
   "peerDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acacode/http-client-helpers-serializy.git"
+    "url": "git+https://github.com/acacode/http-helpers-serializy.git"
   },
   "github": {
     "release": true

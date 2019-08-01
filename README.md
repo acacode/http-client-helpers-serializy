@@ -3,12 +3,12 @@
   <h1>Helpers for integration serializy with http web clients </h1>
 
   [![](https://img.shields.io/badge/license-MIT-red.svg)](./LICENSE)
-  [![](https://img.shields.io/npm/v/http-client-helpers-serializy.svg)](https://www.npmjs.com/package/http-client-helpers-serializy)
-  [![](https://img.shields.io/travis/acacode/http-client-helpers-serializy.svg)](https://travis-ci.org/acacode/http-client-helpers-serializy)
-  [![](https://www.codefactor.io/repository/github/acacode/http-client-helpers-serializy/badge/master)](https://www.codefactor.io/repository/github/acacode/http-client-helpers-serializy/overview/master)
-  [![](https://img.shields.io/npm/dm/http-client-helpers-serializy.svg)](http://npm-stat.com/charts.html?package=http-client-helpers-serializy)
-  [![](https://badgen.net/bundlephobia/min/http-client-helpers-serializy)](https://bundlephobia.com/result?p=http-client-helpers-serializy)
-  [![](https://badgen.net/bundlephobia/minzip/http-client-helpers-serializy)](https://bundlephobia.com/result?p=http-client-helpers-serializy)
+  [![](https://img.shields.io/npm/v/http-helpers-serializy.svg)](https://www.npmjs.com/package/http-helpers-serializy)
+  [![](https://img.shields.io/travis/acacode/http-helpers-serializy.svg)](https://travis-ci.org/acacode/http-helpers-serializy)
+  [![](https://www.codefactor.io/repository/github/acacode/http-helpers-serializy/badge/master)](https://www.codefactor.io/repository/github/acacode/http-helpers-serializy/overview/master)
+  [![](https://img.shields.io/npm/dm/http-helpers-serializy.svg)](http://npm-stat.com/charts.html?package=http-helpers-serializy)
+  [![](https://badgen.net/bundlephobia/min/http-helpers-serializy)](https://bundlephobia.com/result?p=http-helpers-serializy)
+  [![](https://badgen.net/bundlephobia/minzip/http-helpers-serializy)](https://bundlephobia.com/result?p=http-helpers-serializy)
 
   <p>
     HTTP client helpers serializy
@@ -17,9 +17,9 @@
 
 ## 🚀 Installation
 
-    $ npm i -S http-client-helpers-serializy
+    $ npm i -S http-helpers-serializy
     # or using yarn
-    $ yarn add http-client-helpers-serializy
+    $ yarn add http-helpers-serializy
 
 ## 📚 Usage  
 
@@ -28,7 +28,7 @@
 import {
   deserializeRequestData,
   serializeResponseData,
-} from 'http-client-helpers-serializy'
+} from 'http-helpers-serializy'
 import { field, model } from 'serializy'
 
 const SerializyModel = model({

@@ -47,7 +47,7 @@ const productionBuildPlugins = [
           'isError',
           'errorModel',
           'error',
-          'HttpClientHelpersSerializy',
+          'HttpHelpersSerializy',
         ],
       },
       module: true,
@@ -59,32 +59,32 @@ const productionBuildPlugins = [
 module.exports = [
   // Common JS builds
   {
-    ...inputOutputConfig('lib/http-client-helpers-serializy.js', 'cjs'),
+    ...inputOutputConfig('lib/http-helpers-serializy.js', 'cjs'),
     external: deps,
     plugins: [babel()],
   },
   {
-    ...inputOutputConfig('lib/http-client-helpers-serializy.min.js', 'cjs'),
+    ...inputOutputConfig('lib/http-helpers-serializy.min.js', 'cjs'),
     external: deps,
     plugins: [babel(), ...productionBuildPlugins],
   },
 
   // EcmaScript builds
   {
-    ...inputOutputConfig('es/http-client-helpers-serializy.js', 'es'),
+    ...inputOutputConfig('es/http-helpers-serializy.js', 'es'),
     external: deps,
     plugins: [babel()],
   },
   {
-    ...inputOutputConfig('es/http-client-helpers-serializy.mjs', 'es'),
+    ...inputOutputConfig('es/http-helpers-serializy.mjs', 'es'),
     external: deps,
     plugins: [resolve(), babel(), ...productionBuildPlugins],
   },
 
   // UMD builds
   {
-    ...inputOutputConfig('dist/http-client-helpers-serializy.js', 'umd', {
-      name: 'HttpClientHelpersSerializy',
+    ...inputOutputConfig('dist/http-helpers-serializy.js', 'umd', {
+      name: 'HttpHelpersSerializy',
     }),
     external: deps,
     plugins: [
@@ -98,8 +98,8 @@ module.exports = [
     ],
   },
   {
-    ...inputOutputConfig('dist/http-client-helpers-serializy.min.js', 'umd', {
-      name: 'HttpClientHelpersSerializy',
+    ...inputOutputConfig('dist/http-helpers-serializy.min.js', 'umd', {
+      name: 'HttpHelpersSerializy',
     }),
     external: deps,
     plugins: [
